@@ -1,21 +1,19 @@
 import React from "react";
+import "./product-list.scss";
 import data from "../products.json";
 
 export function ProductList() {
   const { products } = data;
 
   return (
-    <ul className="product-list">
+    <section className="product-list">
       {products.map((product) => {
         const { name, price, amount, id } = product;
 
         return (
-          <div
-            className="product-list__product-container"
-            key={`product__${id}`}
-          >
+          <div className="product-list__product" key={`product__${id}`}>
             <div>Foto?</div>
-            <div>
+            <div className="product-list__product__info">
               <span>{name}</span>
               <div>
                 <span>precio: ${price}</span>
@@ -26,6 +24,6 @@ export function ProductList() {
           </div>
         );
       })}
-    </ul>
+    </section>
   );
 }
