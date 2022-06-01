@@ -1,0 +1,11 @@
+.product-counter {
+  margin: 15px auto;
+
+  &__value {
+    margin: 0 5px;
+  }
+
+  & button {
+    cursor: pointer;
+  }
+}
