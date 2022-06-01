@@ -17,7 +17,13 @@ export function Product({ name, price, amount, id }) {
 
       {!isInCart ? (
         <div className="product__stock-info">
-          {amount ? <span>EN STOCK</span> : <span>SIN STOCK</span>}
+          <span
+            className={`product__stock-info ${
+              amount ? "in-stock" : "out-of-stock"
+            }`}
+          >
+            {amount ? "EN STOCK" : "SIN STOCK"}
+          </span>
           <ProductCounter
             value={selectedAmount}
             onValueChange={(value) => setSelectedAmount(value)}

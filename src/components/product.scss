@@ -21,6 +21,14 @@
     &__add-to-cart-button {
       cursor: pointer;
     }
+
+    & .in-stock {
+      color: #33af1b;
+    }
+
+    & .out-of-stock {
+      color: #ed1c24;
+    }
   }
 
   &.card-format {
