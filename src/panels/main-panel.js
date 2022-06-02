@@ -1,10 +1,9 @@
 import React from "react";
 import { ProductList } from "../components/product-list";
 import "./main-panel.scss";
-
 import { useLocation } from "wouter";
 
-export function MainPanel() {
+export function MainPanel({ loading }) {
   const [path, pushLocation] = useLocation();
 
   return (
@@ -13,7 +12,7 @@ export function MainPanel() {
         <h1>Productos</h1>
         <button onClick={() => pushLocation("/cart")}>Carrito</button>
       </header>
-      <ProductList />
+      <ProductList loading={loading} />
     </div>
   );
 }

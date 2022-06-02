@@ -3,12 +3,22 @@ import "./product.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
 import { ProductCounter } from "./product-counter";
+import { editAmount } from "../slices/productsSlice";
 
 export function Product({ name, price, amount, id }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
   const dispatch = useDispatch();
 
   const isInCart = window.location.pathname === "/cart";
+
+  function onAddToCartClick() {
+    dispatch(addToCart({ name, price, selectedAmount, id }));
+    dispatch(editAmount({ id, selectedAmount }));
+  }
+
+  if (selectedAmount > amount) {
+    setSelectedAmount(amount);
+  }
 
   return (
     <div className={`product ${isInCart ? "list" : "card"}-format`}>
@@ -31,7 +41,7 @@ export function Product({ name, price, amount, id }) {
           />
           <button
             className="product__stock-info__add-to-cart-button"
-            onClick={() => dispatch(addToCart({ name, price, amount, id }))}
+            onClick={onAddToCartClick}
           >
             Añadir al carrito
           </button>
