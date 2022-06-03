@@ -10,7 +10,12 @@ export function MainPanel({ loading }) {
     <div className="main-panel">
       <header className="main-panel__header">
         <h1>Productos</h1>
-        <button onClick={() => pushLocation("/cart")}>Carrito</button>
+        <div className="main-panle__header__buttons">
+          <button onClick={() => pushLocation("/add-product")}>
+            + publicar nuevo producto
+          </button>
+          <button onClick={() => pushLocation("/cart")}>Carrito</button>
+        </div>
       </header>
       <ProductList loading={loading} />
     </div>

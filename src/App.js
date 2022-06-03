@@ -8,6 +8,7 @@ import useAxios from "./hooks/useAxios";
 import { setProducts } from "./slices/productsSlice";
 import { useEffect } from "react";
 import axios from "./apis/products-api";
+import { AddProductPanel } from "./panels/add-product-panel";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
       <Route path="/">
         <MainPanel loading={loading} />
       </Route>
+      <Route path="/add-product" component={AddProductPanel} />
       <Route path="/cart" component={CartPanel} />
     </div>
   );
