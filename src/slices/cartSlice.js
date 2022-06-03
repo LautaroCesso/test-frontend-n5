@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -7,7 +7,25 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, { payload }) => {
-      state.products.push(payload);
+      const products = JSON.parse(JSON.stringify(current(state.products)));
+      const { id, amountToAddToCart } = payload;
+      let isOnTheList = false;
+
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+
+        if (product.id === id) {
+          product.amountToAddToCart += amountToAddToCart;
+          isOnTheList = true;
+          break;
+        }
+      }
+
+      if (isOnTheList) {
+        state.products = products;
+      } else {
+        state.products.push(payload);
+      }
     },
   },
 });

@@ -5,14 +5,14 @@ import { addToCart } from "../slices/cartSlice";
 import { ProductCounter } from "./product-counter";
 import { editAmount } from "../slices/productsSlice";
 
-export function Product({ name, price, amount, id }) {
+export function Product({ name, price, amount, id, amountToAddToCart }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
   const dispatch = useDispatch();
 
   const isInCart = window.location.pathname === "/cart";
 
   function onAddToCartClick() {
-    dispatch(addToCart({ name, price, selectedAmount, id }));
+    dispatch(addToCart({ name, price, amountToAddToCart: selectedAmount, id }));
     dispatch(editAmount({ id, selectedAmount }));
   }
 
@@ -46,7 +46,15 @@ export function Product({ name, price, amount, id }) {
             Añadir al carrito
           </button>
         </div>
-      ) : null}
+      ) : (
+        <div className="product__in-cart-info">
+          <span>Unidades: {amountToAddToCart}</span>
+          <br />
+          <span>
+            Precio acumulado en este producto: ${amountToAddToCart * price}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
