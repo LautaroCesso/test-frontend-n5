@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
 import { ProductCounter } from "./product-counter";
 import { editAmount } from "../slices/productsSlice";
+import { Icon } from "@chakra-ui/icons";
+import { FaCartPlus } from "react-icons/fa";
+import { Button, Heading, Stack } from "@chakra-ui/react";
 
 export function Product({ name, price, amount, id, amountToAddToCart }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
@@ -24,8 +27,12 @@ export function Product({ name, price, amount, id, amountToAddToCart }) {
 
   return (
     <div className={`product ${isInCart ? "list" : "card"}-format`}>
-      <span>{name}</span>
-      <span>${price}</span>
+      <Stack align="center">
+        <Heading size="md" as="h4">
+          {name}
+        </Heading>
+        <Heading size="xs">${price}</Heading>
+      </Stack>
 
       {!isInCart ? (
         <div className="product__stock-info">
@@ -43,12 +50,16 @@ export function Product({ name, price, amount, id, amountToAddToCart }) {
                 onValueChange={setSelectedAmount}
                 maxValue={amount}
               />
-              <button
+              <Button
                 className="product__stock-info__add-to-cart-button"
                 onClick={onAddToCartClick}
+                rightIcon={<Icon as={FaCartPlus} />}
+                colorScheme="messenger"
+                size="sm"
+                variant="solid"
               >
                 Añadir al carrito
-              </button>{" "}
+              </Button>
             </>
           ) : null}
         </div>
