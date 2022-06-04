@@ -1,0 +1,47 @@
+.product-card {
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 220px;
+  min-width: 175px;
+  border-radius: 5%;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.22);
+  margin: 15px 10px;
+
+  &:hover {
+    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.1);
+    -webkit-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+
+  &__stock-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+
+    &__add-to-cart-button {
+      cursor: pointer;
+    }
+
+    & .in-stock {
+      color: #33af1b;
+    }
+
+    & .out-of-stock {
+      color: #ed1c24;
+    }
+  }
+
+  &.dark {
+    background-color: #2d3748; // Chakra Gray 700
+  }
+}

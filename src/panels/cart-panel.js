@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ProductList } from "../components/product-list";
+import { ProductRowList } from "../components/product-row-list";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCartProducts } from "../slices/cartSlice";
 import { setProducts } from "../slices/productsSlice";
@@ -85,7 +85,7 @@ export function CartPanel() {
           Finalizar compra
         </button>
       </section>
-      <ProductList products={products} />
+      <ProductRowList products={products} />
       <div>Total ${total}</div>
     </div>
   );
