@@ -1,18 +1,19 @@
+import { Button, Input, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../apis/products-api";
-import { Message } from "../components/message";
+import { Navbar } from "../components/navbar";
 import useAxiosFunction from "../hooks/useAxiosFunction";
 import { setProducts } from "../slices/productsSlice";
+import "./add-product-panel.scss";
 
 export function AddProductPanel() {
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.products.list);
   const [formState, changeForm] = useState({ name: "", amount: 1, price: 0 });
-  const [message, changeMessage] = useState({ content: "", type: "" });
   const { name, amount, price } = formState;
-  const { content, type } = message;
+  const toast = useToast();
 
   const handleSubmit = (event) => {
     if (!(amount < 1 || price < 0 || name === "")) {
@@ -29,12 +30,23 @@ export function AddProductPanel() {
         })
       );
 
-      changeMessage({
-        content: "Producto creado exitosamente",
-        type: "success",
+      toast({
+        title: "Producto creado exitosamente. :)",
+        description:
+          "Vuelva al panel principal para verlo en la lista, o continue cargando mas productos :)",
+        status: "success",
+        duration: 10000,
+        isClosable: true,
       });
     } else {
-      changeMessage({ content: "Valores invalidos", type: "error" });
+      toast({
+        title: "Valores incorrectos. :(",
+        description:
+          "Por favor revise los campos del formulario, ingrese todos los datos necesarios de forma correcta. Debe cargar un nombre, ademas la cantidad no puede ser menor que 1 y el precio no puede ser menor que 0.",
+        status: "error",
+        duration: 10000,
+        isClosable: true,
+      });
     }
 
     event.preventDefault();
@@ -63,51 +75,45 @@ export function AddProductPanel() {
 
   return (
     <div className="add-product-panel">
-      <header className="add-product-panel__header">
-        <h1>Add new product</h1>
-      </header>
-      {content ? (
-        <Message
-          className="add-product-panel__message"
-          content={content}
-          type={type}
-        />
-      ) : null}
-
+      <Navbar />
       <form
-        className="add-product-panel__form__input-container"
+        className="add-product-panel__form"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <label className="add-product-panel__form__field">
-          Nombre:
-          <input
-            name="name"
-            value={name}
-            onChange={(e) => onChangeForm(e, "name")}
-          />
-        </label>
+        <Text mb="8px">Nombre:</Text>
+        <Input
+          variant="outline"
+          placeholder="Escriba aqui el nombre del producto"
+          name="name"
+          value={name}
+          onChange={(e) => onChangeForm(e, "name")}
+        />
 
-        <label className="add-product-panel__form__field">
+        <Text mt="8px" mb="8px">
           Cantidad:
-          <input
-            name="amount"
-            value={amount}
-            onChange={(e) => onChangeForm(e, "amount")}
-            type="number"
-          />
-        </label>
+        </Text>
+        <input
+          name="amount"
+          value={amount}
+          onChange={(e) => onChangeForm(e, "amount")}
+          type="number"
+        />
 
-        <label className="add-product-panel__form__field">
+        <Text mt="16px" mb="8px">
           Precio:
-          <input
-            name="price"
-            value={price}
-            onChange={(e) => onChangeForm(e, "price")}
-            type="number"
-          />
-        </label>
+        </Text>
+        <input
+          name="price"
+          value={price}
+          onChange={(e) => onChangeForm(e, "price")}
+          type="number"
+        />
 
-        <input type="submit" value="Agregar producto" />
+        <div className="add-product-panel__form__submit-button-container">
+          <Button mt="16px" colorScheme="green" type="submit">
+            Agregar producto
+          </Button>
+        </div>
       </form>
     </div>
   );

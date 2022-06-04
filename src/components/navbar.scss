@@ -14,10 +14,14 @@
   }
 
   &__buttons {
-    width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
+
+    &__add-new-product-button,
+    &__cart-button {
+      margin: 0 10px;
+    }
 
     IconButton:focus,
     Button:focus {
@@ -27,5 +31,10 @@
     &__cart-button {
       color: #ed1c24 !important;
     }
+  }
+
+  &__shop-header {
+    cursor: pointer;
+    user-select: none;
   }
 }

@@ -12,16 +12,25 @@ export function Navbar() {
 
   return (
     <nav className={`navbar ${colorMode === "dark" ? colorMode : ""}`}>
-      <Heading>Productos</Heading>
+      <Heading
+        className="navbar__shop-header"
+        onClick={() => pushLocation("/")}
+      >
+        MyShop
+      </Heading>
       <section className="navbar__buttons">
-        <Button
-          rightIcon={<MdPostAdd />}
-          leftIcon={<MdPostAdd />}
-          variant="outline"
-          onClick={() => pushLocation("/add-product")}
-        >
-          Publicar un nuevo producto
-        </Button>
+        {path !== "/add-product" ? (
+          <Button
+            className="navbar__buttons__add-new-product-button"
+            rightIcon={<MdPostAdd />}
+            leftIcon={<MdPostAdd />}
+            variant="outline"
+            colorScheme="purple"
+            onClick={() => pushLocation("/add-product")}
+          >
+            Publicar un nuevo producto
+          </Button>
+        ) : null}
         <ToggleColorMode />
         <IconButton
           className="navbar__buttons__cart-button"

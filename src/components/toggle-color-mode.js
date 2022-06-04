@@ -8,6 +8,7 @@ const ToggleColorMode = () => {
   return (
     <Button
       variant="outline"
+      colorScheme={colorMode === "dark" ? "orange" : "blue"}
       className="toggle-color-mode"
       onClick={() => toggleColorMode()}
     >
