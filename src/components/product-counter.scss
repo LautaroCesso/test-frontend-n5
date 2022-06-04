@@ -1,11 +1,15 @@
 .product-counter {
   margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
   &__value {
     margin: 0 5px;
   }
 
-  & button {
-    cursor: pointer;
+  & Button:focus {
+    box-shadow: unset;
   }
 }
