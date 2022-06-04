@@ -12,7 +12,9 @@ export function Product({ name, price, amount, id, amountToAddToCart }) {
   const isInCart = window.location.pathname === "/cart";
 
   function onAddToCartClick() {
-    dispatch(addToCart({ name, price, amountToAddToCart: selectedAmount, id }));
+    dispatch(
+      addToCart({ name, price, amount, amountToAddToCart: selectedAmount, id })
+    );
     dispatch(editAmount({ id, selectedAmount }));
   }
 
@@ -34,17 +36,21 @@ export function Product({ name, price, amount, id, amountToAddToCart }) {
           >
             {amount ? "EN STOCK" : "SIN STOCK"}
           </span>
-          <ProductCounter
-            value={selectedAmount}
-            onValueChange={(value) => setSelectedAmount(value)}
-            maxValue={amount}
-          />
-          <button
-            className="product__stock-info__add-to-cart-button"
-            onClick={onAddToCartClick}
-          >
-            Añadir al carrito
-          </button>
+          {amount ? (
+            <>
+              <ProductCounter
+                value={selectedAmount}
+                onValueChange={setSelectedAmount}
+                maxValue={amount}
+              />
+              <button
+                className="product__stock-info__add-to-cart-button"
+                onClick={onAddToCartClick}
+              >
+                Añadir al carrito
+              </button>{" "}
+            </>
+          ) : null}
         </div>
       ) : (
         <div className="product__in-cart-info">

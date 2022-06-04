@@ -15,7 +15,7 @@ export function ProductCounter({ value, onValueChange, maxValue }) {
         disabled={value === 0}
         aria-label="Decrement value"
         onClick={() => {
-          onCounterButtonClick(count - 1);
+          onCounterButtonClick(value !== undefined ? value - 1 : count - 1);
         }}
       >
         -
@@ -27,7 +27,7 @@ export function ProductCounter({ value, onValueChange, maxValue }) {
         disabled={value === maxValue}
         aria-label="Increment value"
         onClick={() => {
-          onCounterButtonClick(count + 1);
+          onCounterButtonClick(value !== undefined ? value + 1 : count + 1);
         }}
       >
         +

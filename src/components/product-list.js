@@ -11,7 +11,7 @@ export function ProductList({ products = [], loading = false }) {
   let contentToRender = (
     <Message
       className="product-list__empty-list-message"
-      content="No tiene productos en el carrito"
+      content="Actualmente no tiene ningun producto en su carrito"
       type="error"
     />
   );

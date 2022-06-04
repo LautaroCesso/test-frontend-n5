@@ -54,7 +54,9 @@ export function AddProductPanel() {
   }, [productsFromApi]);
 
   function onChangeForm(event, label) {
-    const { value } = event.target;
+    let { value } = event.target;
+
+    if (label === "price" || label === "amount") value *= 1;
 
     changeForm({ ...formState, [label]: value });
   }
