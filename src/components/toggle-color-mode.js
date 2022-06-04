@@ -1,16 +1,15 @@
 import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import "./toggle-color-mode.scss";
 
 const ToggleColorMode = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Button
+      variant="outline"
+      className="toggle-color-mode"
       onClick={() => toggleColorMode()}
-      pos="absolute"
-      top="0"
-      right="0"
-      m="1rem"
     >
       {colorMode === "dark" ? (
         <SunIcon color="orange.200" />

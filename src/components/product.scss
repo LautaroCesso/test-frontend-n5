@@ -39,7 +39,7 @@
     padding: 10px;
     height: 220px;
     min-width: 175px;
-
+    border-radius: 5%;
     -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
       0 6px 6px rgba(0, 0, 0, 0.22);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.22);
@@ -53,6 +53,10 @@
       -webkit-transform: translateY(-6px);
       -ms-transform: translateY(-6px);
       transform: translateY(-6px);
+    }
+
+    &.dark {
+      background-color: #2d3748; // Chakra Gray 700
     }
   }
 }

@@ -6,10 +6,12 @@ import { ProductCounter } from "./product-counter";
 import { editAmount } from "../slices/productsSlice";
 import { Icon } from "@chakra-ui/icons";
 import { FaCartPlus } from "react-icons/fa";
-import { Button, Heading, Stack } from "@chakra-ui/react";
+import { Button, Heading, Stack, useColorMode } from "@chakra-ui/react";
 
 export function Product({ name, price, amount, id, amountToAddToCart }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
+  const { colorMode } = useColorMode();
+
   const dispatch = useDispatch();
 
   const isInCart = window.location.pathname === "/cart";
@@ -26,7 +28,11 @@ export function Product({ name, price, amount, id, amountToAddToCart }) {
   }
 
   return (
-    <div className={`product ${isInCart ? "list" : "card"}-format`}>
+    <div
+      className={`product ${isInCart ? "list" : "card"}-format ${
+        colorMode === "dark" ? colorMode : ""
+      }`}
+    >
       <Stack align="center">
         <Heading size="md" as="h4">
           {name}

@@ -1,7 +1,6 @@
 import "./App.scss";
 import { MainPanel } from "./panels/main-panel";
 import { CartPanel } from "./panels/cart-panel";
-
 import { Route } from "wouter";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./slices/productsSlice";
@@ -9,7 +8,6 @@ import useAxios from "./hooks/useAxios";
 import axios from "./apis/products-api";
 import { useEffect } from "react";
 import { AddProductPanel } from "./panels/add-product-panel";
-import ToggleColorMode from "./components/toggle-color-mode";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      <ToggleColorMode />
       <Route path="/">
         <MainPanel loading={loading} />
       </Route>
