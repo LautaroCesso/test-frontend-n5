@@ -31,7 +31,6 @@ export function Navbar() {
             Publicar un nuevo producto
           </Button>
         ) : null}
-        <ToggleColorMode />
         {path !== "/cart" ? (
           <IconButton
             className="navbar__buttons__cart-button"
@@ -42,6 +41,7 @@ export function Navbar() {
             icon={<FaShoppingCart />}
           />
         ) : null}
+        <ToggleColorMode />
       </section>
     </nav>
   );
