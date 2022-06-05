@@ -3,7 +3,7 @@ import { IconButton } from "@chakra-ui/react";
 import React, { useState } from "react";
 import "./product-counter.scss";
 
-export function ProductCounter({ value, onValueChange, maxValue }) {
+export default function ProductCounter({ value, onValueChange, maxValue }) {
   const [count, setValue] = useState(1);
 
   function onCounterButtonClick(newValue) {

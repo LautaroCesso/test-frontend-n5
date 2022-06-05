@@ -14,7 +14,6 @@ const useAxiosFunction = () => {
       const ctrl = new AbortController();
       setController(ctrl);
       const res = await axiosInstance[method.toLowerCase()](url, requestConfig);
-      console.log(res);
       setResponse(res.data);
     } catch (err) {
       console.log(err.message);
@@ -25,8 +24,6 @@ const useAxiosFunction = () => {
   };
 
   useEffect(() => {
-    console.log(controller);
-
     // useEffect cleanup function
     return () => controller && controller.abort();
   }, [controller]);

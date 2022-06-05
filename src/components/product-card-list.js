@@ -1,10 +1,10 @@
 import React from "react";
 import "./product-card-list.scss";
-import { ProductCard } from "./product-card";
+import ProductCard from "./product-card";
 import { useSelector } from "react-redux";
-import { Loading } from "./loading";
+import Loading from "./loading";
 
-export function ProductCardList({ loading = false }) {
+export default function ProductCardList({ loading = false }) {
   const productsFromAPI = useSelector((state) => state.products.list);
 
   function renderProducts(products) {

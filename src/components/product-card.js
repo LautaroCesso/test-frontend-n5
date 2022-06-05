@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./product-card.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
-import { ProductCounter } from "./product-counter";
+import ProductCounter from "./product-counter";
 import { editAmount } from "../slices/productsSlice";
 import { Icon } from "@chakra-ui/icons";
 import { FaCartPlus } from "react-icons/fa";
 import { Button, Heading, Stack, useColorMode } from "@chakra-ui/react";
 
-export function ProductCard({ name, price, amount, id }) {
+export default function ProductCard({ name, price, amount, id }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
   const { colorMode } = useColorMode();
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./message.scss";
 
-export function Message({ content, type }) {
+export default function Message({ content, type }) {
   const classByType = {
     error: "error",
     success: "success",

@@ -6,7 +6,7 @@ import "./navbar.scss";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdPostAdd } from "react-icons/md";
 
-export function Navbar() {
+export default function Navbar() {
   const [path, pushLocation] = useLocation();
   const { colorMode } = useColorMode();
 

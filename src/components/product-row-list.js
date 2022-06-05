@@ -8,11 +8,11 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
-import { Message } from "./message";
-import { ProductRow } from "./product-row";
+import Message from "./message";
+import ProductRow from "./product-row";
 import "./product-row-list.scss";
 
-export function ProductRowList({ products = [], loading = false }) {
+export default function ProductRowList({ products = [], loading = false }) {
   function renderProducts(products) {
     if (products.length) {
       return (

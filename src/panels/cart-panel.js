@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ProductRowList } from "../components/product-row-list";
+import ProductRowList from "../components/product-row-list";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCartProducts } from "../slices/cartSlice";
 import { setProducts } from "../slices/productsSlice";
@@ -9,9 +9,9 @@ import { Button, Text, useToast } from "@chakra-ui/react";
 import { AiOutlineClear } from "react-icons/ai";
 import { GiWallet } from "react-icons/gi";
 import "./cart-panel.scss";
-import { Loading } from "../components/loading";
+import Loading from "../components/loading";
 
-export function CartPanel() {
+export default function CartPanel() {
   const products = useSelector((state) => state.cart.products);
   const toast = useToast();
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();

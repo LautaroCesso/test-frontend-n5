@@ -2,12 +2,12 @@ import { Button, Input, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../apis/products-api";
-import { Loading } from "../components/loading";
+import Loading from "../components/loading";
 import useAxiosFunction from "../hooks/useAxiosFunction";
 import { setProducts } from "../slices/productsSlice";
 import "./add-product-panel.scss";
 
-export function AddProductPanel() {
+export default function AddProductPanel() {
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.products.list);
