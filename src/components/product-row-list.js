@@ -8,6 +8,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
+import { Loading } from "./loading";
 import { Message } from "./message";
 import { ProductRow } from "./product-row";
 import "./product-row-list.scss";
@@ -49,7 +50,7 @@ export function ProductRowList({ products = [], loading = false }) {
 
   return (
     <section className="product-row-list">
-      {loading ? "LOADING..." : renderProducts(products)}
+      {loading ? <Loading /> : renderProducts(products)}
       {!products.length ? (
         <Message
           className="product-row-list__empty-list-message"

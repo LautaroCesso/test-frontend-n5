@@ -2,6 +2,7 @@ import { Button, Input, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../apis/products-api";
+import { Loading } from "../components/loading";
 import useAxiosFunction from "../hooks/useAxiosFunction";
 import { setProducts } from "../slices/productsSlice";
 import "./add-product-panel.scss";
@@ -74,45 +75,49 @@ export function AddProductPanel() {
 
   return (
     <div className="add-product-panel">
-      <form
-        className="add-product-panel__form"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <Text mb="8px">Nombre:</Text>
-        <Input
-          variant="outline"
-          placeholder="Escriba aqui el nombre del producto"
-          name="name"
-          value={name}
-          onChange={(e) => onChangeForm(e, "name")}
-        />
+      {loading ? (
+        <Loading />
+      ) : (
+        <form
+          className="add-product-panel__form"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <Text mb="8px">Nombre:</Text>
+          <Input
+            variant="outline"
+            placeholder="Escriba aqui el nombre del producto"
+            name="name"
+            value={name}
+            onChange={(e) => onChangeForm(e, "name")}
+          />
 
-        <Text mt="8px" mb="8px">
-          Cantidad:
-        </Text>
-        <input
-          name="amount"
-          value={amount}
-          onChange={(e) => onChangeForm(e, "amount")}
-          type="number"
-        />
+          <Text mt="8px" mb="8px">
+            Cantidad:
+          </Text>
+          <input
+            name="amount"
+            value={amount}
+            onChange={(e) => onChangeForm(e, "amount")}
+            type="number"
+          />
 
-        <Text mt="16px" mb="8px">
-          Precio:
-        </Text>
-        <input
-          name="price"
-          value={price}
-          onChange={(e) => onChangeForm(e, "price")}
-          type="number"
-        />
+          <Text mt="16px" mb="8px">
+            Precio:
+          </Text>
+          <input
+            name="price"
+            value={price}
+            onChange={(e) => onChangeForm(e, "price")}
+            type="number"
+          />
 
-        <div className="add-product-panel__form__submit-button-container">
-          <Button mt="16px" colorScheme="green" type="submit">
-            Agregar producto
-          </Button>
-        </div>
-      </form>
+          <div className="add-product-panel__form__submit-button-container">
+            <Button mt="16px" colorScheme="green" type="submit">
+              Agregar producto
+            </Button>
+          </div>
+        </form>
+      )}
     </div>
   );
 }

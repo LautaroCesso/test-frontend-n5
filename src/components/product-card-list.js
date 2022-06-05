@@ -2,8 +2,9 @@ import React from "react";
 import "./product-card-list.scss";
 import { ProductCard } from "./product-card";
 import { useSelector } from "react-redux";
+import { Loading } from "./loading";
 
-export function ProductCardList({ products = [], loading = false }) {
+export function ProductCardList({ loading = false }) {
   const productsFromAPI = useSelector((state) => state.products.list);
 
   function renderProducts(products) {
@@ -14,7 +15,7 @@ export function ProductCardList({ products = [], loading = false }) {
 
   return (
     <section className="product-card-list">
-      {loading ? "LOADING..." : renderProducts(productsFromAPI)}
+      {loading ? <Loading /> : renderProducts(productsFromAPI)}
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { Button, Text, useToast } from "@chakra-ui/react";
 import { AiOutlineClear } from "react-icons/ai";
 import { GiWallet } from "react-icons/gi";
 import "./cart-panel.scss";
+import { Loading } from "../components/loading";
 
 export function CartPanel() {
   const products = useSelector((state) => state.cart.products);
@@ -78,6 +79,7 @@ export function CartPanel() {
       <section className="cart-panel__buttons">
         <Button
           disabled={!products.length}
+          isLoading={loading}
           onClick={clearCart}
           className="cart-panel__buttons__clear-cart-button"
           colorScheme="orange"
@@ -89,6 +91,7 @@ export function CartPanel() {
         </Button>
         <Button
           disabled={!products.length}
+          isLoading={loading}
           onClick={buyProducts}
           className="cart-panel__buttons__buy-products-button"
           colorScheme="messenger"
@@ -98,6 +101,7 @@ export function CartPanel() {
           Finalizar compra
         </Button>
       </section>
+      {loading ? <Loading /> : null}
       <ProductRowList products={products} />
       <section className="cart-panel__total-money-container">
         <Text fontSize="4xl" as="i">
