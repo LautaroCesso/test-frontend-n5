@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:5556";
+const BASE_URL = "https://lautaro-products.herokuapp.com/";
 
 export default axios.create({
   baseURL: BASE_URL,

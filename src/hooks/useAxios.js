@@ -29,9 +29,7 @@ const useAxios = (configObj) => {
       }
     };
 
-    setTimeout(() => {
-      fetchData();
-    }, 1000);
+    fetchData();
 
     return () => controller.abort();
   }, [reload]);
