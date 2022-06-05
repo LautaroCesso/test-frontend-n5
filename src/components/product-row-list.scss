@@ -1,0 +1,9 @@
+.product-row-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__products {
+    width: 100%;
+  }
+}

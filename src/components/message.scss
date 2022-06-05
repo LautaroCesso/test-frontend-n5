@@ -1,11 +1,13 @@
 .message {
   margin: 20px;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   padding: 5px;
-  border: solid 1px black;
+  border: solid 1px;
+  border-radius: 5px;
 
   &.error {
     background-color: rgb(255, 123, 123);
@@ -13,5 +15,9 @@
 
   &.success {
     background-color: rgb(123, 255, 123);
+  }
+
+  &.info {
+    background-color: rgb(123, 123, 255);
   }
 }

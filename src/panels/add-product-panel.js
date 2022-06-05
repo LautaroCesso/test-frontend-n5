@@ -2,7 +2,6 @@ import { Button, Input, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../apis/products-api";
-import { Navbar } from "../components/navbar";
 import useAxiosFunction from "../hooks/useAxiosFunction";
 import { setProducts } from "../slices/productsSlice";
 import "./add-product-panel.scss";
@@ -33,7 +32,7 @@ export function AddProductPanel() {
       toast({
         title: "Producto creado exitosamente. :)",
         description:
-          "Vuelva al panel principal para verlo en la lista, o continue cargando mas productos :)",
+          "Vuelva al panel principal para verlo en la lista, o continue cargando mas productos.",
         status: "success",
         duration: 10000,
         isClosable: true,
@@ -75,7 +74,6 @@ export function AddProductPanel() {
 
   return (
     <div className="add-product-panel">
-      <Navbar />
       <form
         className="add-product-panel__form"
         onSubmit={(e) => handleSubmit(e)}

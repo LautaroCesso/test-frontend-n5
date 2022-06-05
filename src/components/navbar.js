@@ -32,14 +32,16 @@ export function Navbar() {
           </Button>
         ) : null}
         <ToggleColorMode />
-        <IconButton
-          className="navbar__buttons__cart-button"
-          aria-label="Go to cart panel button"
-          variant="outline"
-          colorScheme="red"
-          onClick={() => pushLocation("/cart")}
-          icon={<FaShoppingCart />}
-        />
+        {path !== "/cart" ? (
+          <IconButton
+            className="navbar__buttons__cart-button"
+            aria-label="Go to cart panel button"
+            variant="outline"
+            colorScheme="red"
+            onClick={() => pushLocation("/cart")}
+            icon={<FaShoppingCart />}
+          />
+        ) : null}
       </section>
     </nav>
   );

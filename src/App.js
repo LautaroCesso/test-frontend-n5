@@ -8,6 +8,7 @@ import useAxios from "./hooks/useAxios";
 import axios from "./apis/products-api";
 import { useEffect } from "react";
 import { AddProductPanel } from "./panels/add-product-panel";
+import { Navbar } from "./components/navbar";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Route path="/">
         <MainPanel loading={loading} />
       </Route>

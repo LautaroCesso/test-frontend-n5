@@ -1,0 +1,19 @@
+.cart-panel {
+  padding: 15px 30px;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & > Button {
+      margin: 10px;
+    }
+  }
+
+  &__total-money-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

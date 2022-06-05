@@ -1,5 +1,5 @@
 import React from "react";
-import "./product-list.scss";
+import "./product-card-list.scss";
 import { ProductCard } from "./product-card";
 import { useSelector } from "react-redux";
 
@@ -13,7 +13,7 @@ export function ProductCardList({ products = [], loading = false }) {
   }
 
   return (
-    <section className="product-list">
+    <section className="product-card-list">
       {loading ? "LOADING..." : renderProducts(productsFromAPI)}
     </section>
   );

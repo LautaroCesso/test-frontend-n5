@@ -5,11 +5,14 @@ import { clearCartProducts } from "../slices/cartSlice";
 import { setProducts } from "../slices/productsSlice";
 import axios from "../apis/products-api";
 import useAxiosFunction from "../hooks/useAxiosFunction";
-import { Message } from "../components/message";
+import { Button, Text, useToast } from "@chakra-ui/react";
+import { AiOutlineClear } from "react-icons/ai";
+import { GiWallet } from "react-icons/gi";
+import "./cart-panel.scss";
 
 export function CartPanel() {
   const products = useSelector((state) => state.cart.products);
-  const [successBuyMessage, setSuccessBuyMessage] = useState("");
+  const toast = useToast();
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();
   const total = products.reduce((total, product) => {
     total += product.price * product.amountToAddToCart;
@@ -34,8 +37,6 @@ export function CartPanel() {
       for (let i = 0; i < products.length; i++) {
         const { id, amount, name, price, amountToAddToCart } = products[i];
 
-        console.log(amount, amountToAddToCart);
-
         await axiosFetch({
           axiosInstance: axios,
           method: "put",
@@ -49,15 +50,20 @@ export function CartPanel() {
         });
       }
 
-      dispatch(clearCartProducts());
-
       axiosFetch({
         axiosInstance: axios,
         method: "get",
         url: "/products",
+      }).then(() => {
+        dispatch(clearCartProducts());
+        toast({
+          title: "Compra realizada con exito. :)",
+          description: "Gracias por confiar en nosotros.",
+          status: "success",
+          duration: 7500,
+          isClosable: true,
+        });
       });
-
-      setSuccessBuyMessage("Compra realizada con exito");
     }
   }
 
@@ -69,24 +75,35 @@ export function CartPanel() {
 
   return (
     <div className="cart-panel">
-      <h1>Carrito</h1>
       <section className="cart-panel__buttons">
-        {successBuyMessage ? (
-          <Message
-            className="cart-panel__success-buy-message"
-            content={successBuyMessage}
-            type="success"
-          />
-        ) : null}
-        <button disabled={!products.length} onClick={clearCart}>
-          Clear
-        </button>
-        <button disabled={!products.length} onClick={buyProducts}>
+        <Button
+          disabled={!products.length}
+          onClick={clearCart}
+          className="cart-panel__buttons__clear-cart-button"
+          colorScheme="orange"
+          variant="solid"
+          size="md"
+          leftIcon={<AiOutlineClear />}
+        >
+          Vaciar carrito
+        </Button>
+        <Button
+          disabled={!products.length}
+          onClick={buyProducts}
+          className="cart-panel__buttons__buy-products-button"
+          colorScheme="messenger"
+          size="md"
+          leftIcon={<GiWallet />}
+        >
           Finalizar compra
-        </button>
+        </Button>
       </section>
       <ProductRowList products={products} />
-      <div>Total ${total}</div>
+      <section className="cart-panel__total-money-container">
+        <Text fontSize="4xl" as="i">
+          Total ${total}
+        </Text>
+      </section>
     </div>
   );
 }

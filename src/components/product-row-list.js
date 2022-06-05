@@ -1,13 +1,50 @@
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import React from "react";
-import "./product-list.scss";
 import { Message } from "./message";
 import { ProductRow } from "./product-row";
+import "./product-row-list.scss";
 
 export function ProductRowList({ products = [], loading = false }) {
   function renderProducts(products) {
-    return products.map((product) => {
-      return <ProductRow key={`product__${product.id}`} {...product} />;
-    });
+    if (products.length) {
+      return (
+        <TableContainer className="product-row-list__products">
+          <Table variant="striped" colorScheme="cyan">
+            <Thead>
+              <Tr>
+                <Th>Product</Th>
+                <Th>Cantidad</Th>
+                <Th>Precio</Th>
+                <Th>Total</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {products.map((product) => {
+                return (
+                  <ProductRow key={`product__${product.id}`} {...product} />
+                );
+              })}
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                <Th>Product</Th>
+                <Th>Cantidad</Th>
+                <Th>Precio</Th>
+                <Th>Total</Th>
+              </Tr>
+            </Tfoot>
+          </Table>
+        </TableContainer>
+      );
+    }
   }
 
   return (
@@ -17,7 +54,7 @@ export function ProductRowList({ products = [], loading = false }) {
         <Message
           className="product-row-list__empty-list-message"
           content="Actualmente no tiene ningun producto en su carrito"
-          type="error"
+          type="info"
         />
       ) : null}
     </section>
