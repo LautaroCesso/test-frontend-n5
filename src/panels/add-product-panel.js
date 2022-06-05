@@ -16,27 +16,27 @@ export function AddProductPanel() {
   const toast = useToast();
 
   const handleSubmit = (event) => {
-    if (!(amount < 1 || price < 0 || name === "")) {
+    if (!(amount < 1 || price < 0 || name.trim().length === 0)) {
       axiosFetch({
         axiosInstance: axios,
         method: "post",
         url: "/products",
         requestConfig: formState,
-      }).then(() =>
+      }).then(() => {
         axiosFetch({
           axiosInstance: axios,
           method: "get",
           url: "/products",
-        })
-      );
-
-      toast({
-        title: "Producto creado exitosamente. :)",
-        description:
-          "Vuelva al panel principal para verlo en la lista, o continue cargando mas productos.",
-        status: "success",
-        duration: 10000,
-        isClosable: true,
+        });
+        changeForm({ name: "", amount: 1, price: 0 });
+        toast({
+          title: "Producto creado exitosamente. :)",
+          description:
+            "Vuelva al panel principal para verlo en la lista, o continue cargando mas productos.",
+          status: "success",
+          duration: 10000,
+          isClosable: true,
+        });
       });
     } else {
       toast({
@@ -69,6 +69,10 @@ export function AddProductPanel() {
     let { value } = event.target;
 
     if (label === "price" || label === "amount") value *= 1;
+
+    if (label === "amount") {
+      value = Math.round(value);
+    }
 
     changeForm({ ...formState, [label]: value });
   }

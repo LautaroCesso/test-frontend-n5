@@ -28,7 +28,9 @@ export function ProductCard({ name, price, amount, id }) {
   return (
     <div className={`product-card ${colorMode === "dark" ? colorMode : ""}`}>
       <Stack align="center">
-        <Heading size="md">{name}</Heading>
+        <Heading title={name} className="product-card__product-name" size="md">
+          {name}
+        </Heading>
         <Heading size="xs">${price}</Heading>
       </Stack>
 
@@ -52,6 +54,7 @@ export function ProductCard({ name, price, amount, id }) {
               onClick={onAddToCartClick}
               rightIcon={<Icon as={FaCartPlus} />}
               colorScheme="messenger"
+              disabled={!selectedAmount}
               size="sm"
               variant="solid"
             >

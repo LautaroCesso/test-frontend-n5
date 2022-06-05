@@ -1,4 +1,11 @@
 .product-row {
   width: 100%;
   padding: 10px 0;
+
+  &__name {
+    text-overflow: ellipsis;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

@@ -44,4 +44,11 @@
   &.dark {
     background-color: #2d3748; // Chakra Gray 700
   }
+
+  &__product-name {
+    text-overflow: ellipsis;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

@@ -8,7 +8,6 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
-import { Loading } from "./loading";
 import { Message } from "./message";
 import { ProductRow } from "./product-row";
 import "./product-row-list.scss";
@@ -50,11 +49,11 @@ export function ProductRowList({ products = [], loading = false }) {
 
   return (
     <section className="product-row-list">
-      {loading ? <Loading /> : renderProducts(products)}
-      {!products.length ? (
+      {renderProducts(products)}
+      {!loading && !products.length ? (
         <Message
           className="product-row-list__empty-list-message"
-          content="Actualmente no tiene ningun producto en su carrito"
+          content="Su carrito esta vacio :(. Mire el panel principal, muchos productos lo estan esperando"
           type="info"
         />
       ) : null}

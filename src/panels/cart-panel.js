@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ProductRowList } from "../components/product-row-list";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCartProducts } from "../slices/cartSlice";
@@ -24,12 +24,20 @@ export function CartPanel() {
   const dispatch = useDispatch();
 
   function clearCart() {
-    dispatch(clearCartProducts());
-
     axiosFetch({
       axiosInstance: axios,
       method: "get",
       url: "/products",
+    }).then(() => {
+      dispatch(clearCartProducts());
+      toast({
+        title: "Su carrito se ha vaciado con exito. :)",
+        description:
+          "Vuelva al panel principal, muchos productos lo estan esperando.",
+        status: "success",
+        duration: 7000,
+        isClosable: true,
+      });
     });
   }
 
@@ -61,7 +69,7 @@ export function CartPanel() {
           title: "Compra realizada con exito. :)",
           description: "Gracias por confiar en nosotros.",
           status: "success",
-          duration: 7500,
+          duration: 7000,
           isClosable: true,
         });
       });
@@ -78,7 +86,7 @@ export function CartPanel() {
     <div className="cart-panel">
       <section className="cart-panel__buttons">
         <Button
-          disabled={!products.length}
+          disabled={loading || !products.length}
           isLoading={loading}
           onClick={clearCart}
           className="cart-panel__buttons__clear-cart-button"
@@ -90,7 +98,7 @@ export function CartPanel() {
           Vaciar carrito
         </Button>
         <Button
-          disabled={!products.length}
+          disabled={loading || !products.length}
           isLoading={loading}
           onClick={buyProducts}
           className="cart-panel__buttons__buy-products-button"
@@ -101,8 +109,11 @@ export function CartPanel() {
           Finalizar compra
         </Button>
       </section>
-      {loading ? <Loading /> : null}
-      <ProductRowList products={products} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProductRowList loading={loading} products={products} />
+      )}
       <section className="cart-panel__total-money-container">
         <Text fontSize="4xl" as="i">
           Total ${total}
