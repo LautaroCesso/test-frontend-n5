@@ -9,6 +9,8 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.22);
   margin-bottom: 20px;
 
+  flex-wrap: wrap;
+
   &.dark {
     background-color: #2d3748; // Chakra Gray 700
   }
@@ -17,10 +19,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
 
     &__add-new-product-button,
     &__cart-button {
-      margin: 0 10px;
+      margin: 10px 10px;
     }
 
     IconButton:focus,

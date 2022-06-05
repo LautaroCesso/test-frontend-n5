@@ -30,6 +30,9 @@
 
     &__add-to-cart-button {
       cursor: pointer;
+      &:focus {
+        box-shadow: unset !important;
+      }
     }
 
     & .in-stock {

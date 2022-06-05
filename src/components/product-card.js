@@ -6,10 +6,18 @@ import ProductCounter from "./product-counter";
 import { editAmount } from "../slices/productsSlice";
 import { Icon } from "@chakra-ui/icons";
 import { FaCartPlus } from "react-icons/fa";
-import { Button, Heading, Stack, useColorMode } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Stack,
+  useColorMode,
+  useToast,
+} from "@chakra-ui/react";
 
 export default function ProductCard({ name, price, amount, id }) {
   const [selectedAmount, setSelectedAmount] = useState(1);
+  const toast = useToast();
+
   const { colorMode } = useColorMode();
 
   const dispatch = useDispatch();
@@ -19,6 +27,13 @@ export default function ProductCard({ name, price, amount, id }) {
       addToCart({ name, price, amount, amountToAddToCart: selectedAmount, id })
     );
     dispatch(editAmount({ id, selectedAmount }));
+
+    toast({
+      title: "El producto se agrego al carrito exitosamente. :)",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   }
 
   if (selectedAmount > amount) {
