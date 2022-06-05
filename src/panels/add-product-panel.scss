@@ -20,8 +20,6 @@
 
   input {
     width: 100%;
-    min-width: 0px;
-    appearance: none;
     border: solid 1px;
     border-image: initial;
     border-color: inherit;
@@ -30,6 +28,17 @@
     padding-inline-end: 1rem;
     border-radius: 10px;
     height: 35px;
-    user-select: none;
+
+    &:focus-visible {
+      outline: unset;
+    }
+
+    &:focus-within,
+    &:focus {
+      z-index: 99;
+      border-style: solid;
+      border-color: #3182ce;
+      box-shadow: 0 0 0 1px #3182ce;
+    }
   }
 }
