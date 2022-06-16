@@ -7,7 +7,9 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, { payload }) => {
-      const products = JSON.parse(JSON.stringify(current(state.products)));
+      const products = JSON.parse(
+        localStorage.getItem("cart-products") || "[]"
+      );
       const { id, amountToAddToCart } = payload;
       let isOnTheList = false;
 
@@ -21,14 +23,16 @@ export const cartSlice = createSlice({
         }
       }
 
-      if (isOnTheList) {
-        state.products = products;
-      } else {
-        state.products.push(payload);
+      if (!isOnTheList) {
+        products.push(payload);
       }
+
+      state.products = products;
+      localStorage.setItem("cart-products", JSON.stringify(products));
     },
     clearCartProducts: (state, { payload }) => {
       state.products = [];
+      localStorage.setItem("cart-products", JSON.stringify([]));
     },
   },
 });

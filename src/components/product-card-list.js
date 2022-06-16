@@ -6,6 +6,11 @@ import Loading from "./loading";
 
 export default function ProductCardList({ loading = false }) {
   const productsFromAPI = useSelector((state) => state.products.list);
+  const productsInLocalStorage = JSON.parse(localStorage.getItem("products"));
+  const products =
+    productsInLocalStorage && productsInLocalStorage.length
+      ? productsInLocalStorage
+      : productsFromAPI;
 
   function renderProducts(products) {
     return products.map((product) => {
@@ -15,7 +20,7 @@ export default function ProductCardList({ loading = false }) {
 
   return (
     <section className="product-card-list">
-      {loading ? <Loading /> : renderProducts(productsFromAPI)}
+      {loading ? <Loading /> : renderProducts(products)}
     </section>
   );
 }

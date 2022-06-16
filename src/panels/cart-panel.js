@@ -12,7 +12,7 @@ import "./cart-panel.scss";
 import Loading from "../components/loading";
 
 export default function CartPanel() {
-  const products = useSelector((state) => state.cart.products);
+  const products = JSON.parse(localStorage.getItem("cart-products")) || [];
   const toast = useToast();
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();
   const total = products.reduce((total, product) => {

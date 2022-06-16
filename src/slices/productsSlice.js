@@ -26,9 +26,13 @@ export const productsSlice = createSlice({
       );
 
       state.list = editedProductList;
+      localStorage.setItem("products", JSON.stringify(editedProductList));
     },
     setProducts: (state, { payload }) => {
-      state.list = payload.productsFromApi;
+      const { productsFromApi } = payload;
+
+      state.list = productsFromApi;
+      localStorage.setItem("products", JSON.stringify(productsFromApi));
     },
   },
 });

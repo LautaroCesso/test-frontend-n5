@@ -10,7 +10,13 @@ import "./add-product-panel.scss";
 export default function AddProductPanel() {
   const [productsFromApi, error, loading, axiosFetch] = useAxiosFunction();
   const dispatch = useDispatch();
-  const productState = useSelector((state) => state.products.list);
+  const productsFromReducer = useSelector((state) => state.products.list);
+  const productsInLocalStorage = JSON.parse(localStorage.getItem("products"));
+  const productState =
+    productsInLocalStorage && productsInLocalStorage.length
+      ? productsInLocalStorage
+      : productsFromReducer;
+
   const [formState, changeForm] = useState({ name: "", amount: 1, price: 0 });
   const { name, amount, price } = formState;
   const toast = useToast();
