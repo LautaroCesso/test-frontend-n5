@@ -11,13 +11,13 @@ import axios from "./apis/products-api";
 import { useEffect } from "react";
 
 function App() {
-  const dispatch = useDispatch();
-
+  // eslint-disable-next-line
   const [productsFromApi, error, loading] = useAxios({
     axiosInstance: axios,
     method: "GET",
     url: "/products",
   });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const productsInLocalStorage =
@@ -28,6 +28,8 @@ function App() {
     } else {
       dispatch(setProducts({ productsFromApi: productsInLocalStorage }));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsFromApi]);
 
   return (
